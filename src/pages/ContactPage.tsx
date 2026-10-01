@@ -224,7 +224,7 @@ export const ContactPage: React.FC = () => {
                     >
                       <option value="Membership Activation">Membership Activation</option>
                       <option value="PayPal Transaction Verification">PayPal Transaction Verification</option>
-                      <option value="Membership Reactivation To New Username - Account Terminated">Membership Reactivation To New Username - Account Terminated</option>
+                      <option value="Membership Deactivation and Reactivation To New Username">Membership Deactivation and Reactivation To New Username</option>
                       <option value="Eligibility Inquiry">US Citizen Eligibility</option>
                       <option value="General Question">General Inquiry</option>
                     </select>
