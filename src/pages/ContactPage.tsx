@@ -5,6 +5,7 @@ import {
   Clock, Sparkles, MessageCircle, ExternalLink, Share2 
 } from 'lucide-react';
 import { useApp } from '../context/AppContext';
+import { InteractiveContactMap } from '../components/InteractiveContactMap';
 
 export const ContactPage: React.FC = () => {
   const { submitContact, settings, user } = useApp();
@@ -124,26 +125,17 @@ export const ContactPage: React.FC = () => {
               Operating out of San Francisco, CA with distributed 24/7 digital fulfillment nodes ensuring rapid voucher code delivery across all US time zones.
             </p>
 
-            {/* Stylized Map Preview Card */}
-            <div className="relative rounded-2xl overflow-hidden border border-[#3d3731] bg-[#1a1815] p-5 space-y-3">
-              <div className="flex items-center justify-between text-xs">
+            {/* Stylized Map Preview Card with Real Interactive Google Map */}
+            <div className="space-y-3">
+              <div className="flex items-center justify-between text-xs px-1">
                 <span className="font-bold text-white flex items-center gap-1.5">
-                  <span>📍</span> San Francisco, California
+                  <MapPin className="w-3.5 h-3.5 text-[#81b64c]" /> San Francisco, California
                 </span>
                 <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#81b64c]/20 text-[#81b64c] border border-[#81b64c]/40 font-mono">
                   Online 24/7
                 </span>
               </div>
-              <div className="h-24 w-full rounded-xl bg-gradient-to-br from-[#2b2722] via-[#211e1a] to-[#161412] flex items-center justify-center text-center p-3 border border-[#3d3731]">
-                <div className="space-y-1">
-                  <span className="text-xs text-stone-300 font-medium block">
-                    US Nationwide Service Network
-                  </span>
-                  <span className="text-[10px] text-stone-400 block font-mono">
-                    Serving all 50 US States & Scholastic Leagues
-                  </span>
-                </div>
-              </div>
+              <InteractiveContactMap />
             </div>
           </div>
         </div>
