@@ -1,0 +1,6 @@
+{
+  "name": "Chess Shop",
+  "description": "Exclusive Chess.com 1-Year Diamond Membership store with discounted pricing, instant activation voucher, PayPal checkout, and 100% official perks.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

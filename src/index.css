@@ -1,0 +1,145 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: 'Cinzel', serif;
+  --font-serif: 'Merriweather', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --color-gold-50: #FCF9EE;
+  --color-gold-100: #F7EFCB;
+  --color-gold-200: #EEDB97;
+  --color-gold-300: #E3C561;
+  --color-gold-400: #D8B036;
+  --color-gold-500: #C79E22;
+  --color-gold-600: #A88118;
+  --color-gold-700: #846315;
+  --color-chess-green: #81b64c;
+  --color-chess-green-hover: #739552;
+  --color-chess-green-dark: #587738;
+  --color-chess-dark: #262421;
+  --color-chess-dark-alt: #312e2b;
+  --color-chess-dark-surface: #1e1d1a;
+  --color-chess-border: #3d3731;
+  --color-chess-cream: #ebecd0;
+  --color-chess-gold: #c99738;
+}
+
+/* Custom smooth transitions and typography helpers */
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: #1a1917;
+  color: #edeae4;
+  min-height: 100vh;
+}
+
+.font-cinzel {
+  font-family: var(--font-display);
+}
+
+.font-merriweather {
+  font-family: var(--font-serif);
+}
+
+/* Chessboard geometric textures */
+.chessboard-subtle-pattern {
+  background-image: 
+    linear-gradient(45deg, rgba(255, 255, 255, 0.03) 25%, transparent 25%), 
+    linear-gradient(-45deg, rgba(255, 255, 255, 0.03) 25%, transparent 25%), 
+    linear-gradient(45deg, transparent 75%, rgba(255, 255, 255, 0.03) 75%), 
+    linear-gradient(-45deg, transparent 75%, rgba(255, 255, 255, 0.03) 75%);
+  background-size: 64px 64px;
+  background-position: 0 0, 0 32px, 32px -32px, -32px 0px;
+}
+
+.chessboard-grid-border {
+  border-image: repeating-linear-gradient(45deg, #81b64c, #81b64c 10px, #312e2b 10px, #312e2b 20px) 1;
+}
+
+/* Subtle rank and file coordinates indicator */
+.chess-coordinates-decor {
+  user-select: none;
+  pointer-events: none;
+  letter-spacing: 2rem;
+  opacity: 0.15;
+  font-family: monospace;
+}
+
+/* Diamond text shine and sparkle animations */
+.diamond-text-animate {
+  background: linear-gradient(
+    110deg,
+    #81b64c 0%,
+    #81b64c 30%,
+    #e8ffb5 45%,
+    #ffffff 50%,
+    #e8ffb5 55%,
+    #81b64c 70%,
+    #81b64c 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: diamond-shine 3.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  display: inline-block;
+  color: #81b64c;
+}
+
+@keyframes diamond-shine {
+  0% {
+    background-position: 150% 0;
+    filter: drop-shadow(0 0 1px rgba(129, 182, 76, 0.3));
+  }
+  30%, 40% {
+    background-position: -50% 0;
+    filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.75)) drop-shadow(0 0 12px rgba(129, 182, 76, 0.6));
+  }
+  70%, 100% {
+    background-position: -50% 0;
+    filter: drop-shadow(0 0 1px rgba(129, 182, 76, 0.3));
+  }
+}
+
+@keyframes diamond-sparkle {
+  0%, 20% {
+    opacity: 0;
+    transform: scale(0.2) rotate(0deg);
+  }
+  32% {
+    opacity: 1;
+    transform: scale(1.25) rotate(90deg);
+    filter: drop-shadow(0 0 4px #ffffff) drop-shadow(0 0 8px #81b64c);
+  }
+  44% {
+    opacity: 0;
+    transform: scale(0.2) rotate(180deg);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.2) rotate(180deg);
+  }
+}
+
+.animate-diamond-sparkle {
+  animation: diamond-sparkle 3.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* Ensure light container inputs type in crisp solid black font */
+.input-typing-black,
+.input-typing-black:focus,
+.input-typing-black:active {
+  color: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
+  caret-color: #000000 !important;
+  color-scheme: light !important;
+}
+
+.input-typing-black::placeholder {
+  -webkit-text-fill-color: #64748b !important;
+  color: #64748b !important;
+}
+
