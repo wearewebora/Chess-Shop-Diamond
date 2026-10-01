@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { 
   Mail, Send, CheckCircle2, MessageSquare, ShieldCheck, 
   User as UserIcon, HelpCircle, MapPin, Globe, 
-  Clock, Sparkles, MessageCircle, ExternalLink, Share2 
+  Clock, MessageCircle, ExternalLink, Share2 
 } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import { InteractiveContactMap } from '../components/InteractiveContactMap';
@@ -98,17 +98,6 @@ export const ContactPage: React.FC = () => {
                   </span>
                 </div>
               </div>
-            </div>
-
-            {/* Bulk orders note */}
-            <div className="p-4 bg-[#1c1a17] rounded-2xl border border-[#38332d] text-xs text-stone-300 space-y-1.5">
-              <strong className="text-white flex items-center gap-1.5">
-                <Sparkles className="w-3.5 h-3.5 text-[#81b64c]" />
-                Bulk Orders & Club Teams
-              </strong>
-              <p className="text-[11px] text-stone-400 leading-relaxed">
-                Coaching a school or university squad? We provide customized batch invoices and bulk discounts for rosters of 5 or more players.
-              </p>
             </div>
           </div>
 
