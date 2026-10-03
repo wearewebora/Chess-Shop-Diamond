@@ -214,8 +214,8 @@ export const Navbar: React.FC = () => {
 
           {/* Right Action Buttons & Mobile Hamburger Toggle */}
           <div className="flex items-center gap-2 sm:gap-3">
-            {/* Owner Access & Admin Desk (Restricted solely to verified owner) */}
-            {isOwnerAuthenticated ? (
+            {/* Owner Access & Admin Desk (Only visible when verified session exists) */}
+            {isOwnerAuthenticated && (
               <div className="hidden sm:flex items-center gap-1.5">
                 <button
                   onClick={() => setCurrentView('admin')}
@@ -240,19 +240,6 @@ export const Navbar: React.FC = () => {
                   <Lock className="w-3.5 h-3.5" />
                 </button>
               </div>
-            ) : (
-              <button
-                onClick={() => setCurrentView('admin')}
-                className={`hidden md:flex min-h-[40px] px-3 py-1.5 rounded-xl text-xs font-bold transition items-center gap-1.5 border ${
-                  currentView === 'admin'
-                    ? 'bg-[#c99738] text-white border-[#f5d997]'
-                    : 'bg-[#221f1a] text-stone-300 border-[#423b32] hover:bg-[#2e2923] hover:text-[#f5d997]'
-                }`}
-                title="Owner Administration Portal"
-              >
-                <Lock className="w-3.5 h-3.5 text-[#c99738]" />
-                <span>Admin Login</span>
-              </button>
             )}
 
             {/* Buy Diamond Pass Primary Button */}
@@ -400,20 +387,22 @@ export const Navbar: React.FC = () => {
               <span>Contact & Support</span>
             </button>
 
-            <button
-              onClick={() => {
-                setCurrentView('admin');
-                setMobileMenuOpen(false);
-              }}
-              className={`w-full min-h-[44px] px-3.5 py-2 rounded-xl text-left flex items-center gap-3 transition ${
-                currentView === 'admin' 
-                  ? 'bg-[#c99738]/20 text-[#f5d997] font-bold border border-[#c99738]/40' 
-                  : 'text-stone-300 hover:bg-white/5'
-              }`}
-            >
-              <Lock className="w-4 h-4 text-[#c99738]" />
-              <span>{isOwnerAuthenticated ? 'Admin Desk (Logged In)' : 'Admin Portal Login'}</span>
-            </button>
+            {isOwnerAuthenticated && (
+              <button
+                onClick={() => {
+                  setCurrentView('admin');
+                  setMobileMenuOpen(false);
+                }}
+                className={`w-full min-h-[44px] px-3.5 py-2 rounded-xl text-left flex items-center gap-3 transition ${
+                  currentView === 'admin' 
+                    ? 'bg-[#c99738]/20 text-[#f5d997] font-bold border border-[#c99738]/40' 
+                    : 'text-stone-300 hover:bg-white/5'
+                }`}
+              >
+                <Lock className="w-4 h-4 text-[#c99738]" />
+                <span>Admin Desk (Logged In)</span>
+              </button>
+            )}
           </div>
 
           {/* Mobile CTA */}

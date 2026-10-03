@@ -123,24 +123,15 @@ export const AuthModal: React.FC = () => {
           </button>
         </form>
 
-        {/* Quick Testing Presets */}
+        {/* Quick Testing Preset */}
         <div className="pt-2 border-t border-slate-800 space-y-2 text-center">
-          <p className="text-[11px] text-slate-400 font-medium">Quick Access Profiles:</p>
-          <div className="grid grid-cols-2 gap-2 text-xs">
+          <p className="text-[11px] text-slate-400 font-medium">Quick Access Profile:</p>
+          <div>
             <button
               onClick={() => quickLogin('customer')}
-              className="py-2 px-3 bg-slate-800 hover:bg-slate-700 text-sky-300 rounded-xl font-bold transition flex items-center justify-center gap-1.5 border border-slate-700"
+              className="w-full py-2 px-3 bg-slate-800 hover:bg-slate-700 text-sky-300 rounded-xl font-bold transition flex items-center justify-center gap-1.5 border border-slate-700"
             >
               <UserIcon className="w-3.5 h-3.5" /> Customer Demo
-            </button>
-            <button
-              onClick={() => {
-                closeAuthModal();
-                setCurrentView('admin');
-              }}
-              className="py-2 px-3 bg-[#2b2210] hover:bg-[#3d3016] text-[#f5d997] rounded-xl font-bold transition flex items-center justify-center gap-1.5 border border-[#7d5f21]"
-            >
-              <Lock className="w-3.5 h-3.5 text-[#f5d997]" /> Owner Desk
             </button>
           </div>
         </div>
