@@ -248,11 +248,11 @@ export const Navbar: React.FC = () => {
                 const popularPlan = plans.find(p => p.popular) || plans[0];
                 startCheckout(popularPlan);
               }}
-              className="min-h-[42px] px-3 sm:px-4 py-2 bg-gradient-to-r from-[#81b64c] to-[#67913d] hover:from-[#8ec853] hover:to-[#74a145] text-white text-xs font-black rounded-xl shadow-lg shadow-[#81b64c]/25 transition flex items-center gap-1.5 group border border-[#81b64c]/40 active:scale-95 cursor-pointer shrink-0"
+              className="min-h-[42px] px-3 sm:px-4 py-2 bg-gradient-to-r from-[#81b64c] to-[#67913d] hover:from-[#8ec853] hover:to-[#74a145] text-white text-xs font-black rounded-xl shadow-lg shadow-[#81b64c]/25 transition flex items-center gap-1.5 group border border-[#81b64c]/40 active:scale-95 cursor-pointer shrink-0 whitespace-nowrap"
             >
-              <span className="hidden xs:inline">Get 1-Year Pass</span>
-              <span className="xs:hidden">Pass $60</span>
-              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition" />
+              <span className="hidden sm:inline">Diamond Membership $60</span>
+              <span className="sm:hidden">pass $60</span>
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition shrink-0" />
             </button>
 
             {/* Mobile / Tablet Hamburger Button */}
