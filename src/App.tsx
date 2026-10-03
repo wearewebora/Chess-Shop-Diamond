@@ -12,7 +12,7 @@ import { AboutPage } from './pages/AboutPage';
 import { ServicesPage } from './pages/ServicesPage';
 import { CheckoutPage } from './pages/CheckoutPage';
 import { OrderStatusPage } from './pages/OrderStatusPage';
-import { AdminDashboardPage } from './pages/AdminDashboardPage';
+import { AdminPage } from './pages/AdminPage';
 import { ContactPage } from './pages/ContactPage';
 
 const AppContent: React.FC = () => {
@@ -36,7 +36,7 @@ const AppContent: React.FC = () => {
         {currentView === 'services' && <ServicesPage />}
         {currentView === 'checkout' && <CheckoutPage />}
         {currentView === 'order-status' && <OrderStatusPage />}
-        {currentView === 'admin' && <AdminDashboardPage />}
+        {currentView === 'admin' && <AdminPage />}
         {currentView === 'contact' && <ContactPage />}
       </main>
 

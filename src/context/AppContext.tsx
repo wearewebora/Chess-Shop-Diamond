@@ -188,7 +188,60 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     setRejectionReasons(prev => prev.filter(r => r !== reasonToDelete));
   };
 
-  const [currentView, setCurrentView] = useState<AppView>('home');
+  // Helper functions to map URLs to views and vice-versa
+  const getViewFromPath = (path: string): AppView => {
+    const clean = path.toLowerCase().replace(/\/+$/, '') || '/';
+    if (clean === '/admin' || clean.startsWith('/admin/')) return 'admin';
+    if (clean === '/about' || clean.startsWith('/about/')) return 'about';
+    if (clean === '/services' || clean.startsWith('/services/')) return 'services';
+    if (clean === '/checkout' || clean.startsWith('/checkout/')) return 'checkout';
+    if (clean === '/order-status' || clean.startsWith('/order-status/')) return 'order-status';
+    if (clean === '/contact' || clean.startsWith('/contact/')) return 'contact';
+    return 'home';
+  };
+
+  const getPathFromView = (view: AppView): string => {
+    switch (view) {
+      case 'admin': return '/admin';
+      case 'about': return '/about';
+      case 'services': return '/services';
+      case 'checkout': return '/checkout';
+      case 'order-status': return '/order-status';
+      case 'contact': return '/contact';
+      case 'home':
+      default: return '/';
+    }
+  };
+
+  const [currentView, setCurrentViewState] = useState<AppView>(() => {
+    if (typeof window !== 'undefined') {
+      return getViewFromPath(window.location.pathname);
+    }
+    return 'home';
+  });
+
+  const setCurrentView = (view: AppView) => {
+    setCurrentViewState(view);
+    if (typeof window !== 'undefined') {
+      const targetPath = getPathFromView(view);
+      if (window.location.pathname !== targetPath) {
+        window.history.pushState({ view }, '', targetPath);
+      }
+    }
+  };
+
+  // Synchronize on browser Back / Forward buttons
+  useEffect(() => {
+    const handlePopState = () => {
+      if (typeof window !== 'undefined') {
+        const view = getViewFromPath(window.location.pathname);
+        setCurrentViewState(view);
+      }
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [authModalMode, setAuthModalMode] = useState<'login' | 'register'>('login');
   const [isBackendHubOpen, setIsBackendHubOpen] = useState(false);
