@@ -191,7 +191,14 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   // Helper functions to map URLs to views and vice-versa
   const getViewFromPath = (path: string): AppView => {
     const clean = path.toLowerCase().replace(/\/+$/, '') || '/';
-    if (clean === '/admin' || clean.startsWith('/admin/')) return 'admin';
+    if (clean === '/wearewebora/admin' || clean.startsWith('/wearewebora/admin/')) return 'admin';
+    // If user accesses /admin, redirect seamlessly to the official URL /wearewebora/admin
+    if (clean === '/admin' || clean.startsWith('/admin/')) {
+      if (typeof window !== 'undefined') {
+        window.history.replaceState({ view: 'admin' }, '', '/wearewebora/admin');
+      }
+      return 'admin';
+    }
     if (clean === '/about' || clean.startsWith('/about/')) return 'about';
     if (clean === '/services' || clean.startsWith('/services/')) return 'services';
     if (clean === '/checkout' || clean.startsWith('/checkout/')) return 'checkout';
@@ -202,7 +209,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
   const getPathFromView = (view: AppView): string => {
     switch (view) {
-      case 'admin': return '/admin';
+      case 'admin': return '/wearewebora/admin';
       case 'about': return '/about';
       case 'services': return '/services';
       case 'checkout': return '/checkout';

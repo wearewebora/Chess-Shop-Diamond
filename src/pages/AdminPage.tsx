@@ -2,7 +2,7 @@ import React from 'react';
 import { AdminDashboardPage } from './AdminDashboardPage';
 
 /**
- * AdminPage component routed at /admin (https://chesshopdiamond.us/admin)
+ * AdminPage component routed at /wearewebora/admin (https://chesshopdiamond.us/wearewebora/admin)
  * Utilizes the existing design system, fonts, colors, and responsive layout.
  */
 export const AdminPage: React.FC = () => {

@@ -180,7 +180,7 @@ export const Footer: React.FC = () => {
                   className="hover:text-[#81b64c] transition cursor-pointer text-left flex items-center gap-1.5 text-stone-400"
                 >
                   <span>Admin Desk</span>
-                  <span className="text-[10px] font-mono text-[#81b64c] bg-[#81b64c]/15 px-1.5 py-0.5 rounded border border-[#81b64c]/30">/admin</span>
+                  <span className="text-[10px] font-mono text-[#81b64c] bg-[#81b64c]/15 px-1.5 py-0.5 rounded border border-[#81b64c]/30">/wearewebora/admin</span>
                 </button>
               </li>
             </ul>
