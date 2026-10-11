@@ -170,7 +170,7 @@ export const CheckoutPage: React.FC = () => {
                 <Info className="w-4 h-4 text-amber-600" /> Pending Admin Verification
               </h4>
               <p className="text-xs text-amber-800 leading-relaxed">
-                Your payment reference <span className="font-mono font-bold">{completedOrder.paypal_transaction_id}</span> has been received. Our team verifies orders within 5-15 minutes and will credit Diamond access directly to <strong>@{completedOrder.chess_com_username}</strong>.
+                Your payment reference <span className="font-mono font-bold">{completedOrder.paypal_transaction_id}</span> has been received. Our team verifies orders and activates Diamond access directly to <strong>@{completedOrder.chess_com_username}</strong> within 1 to 15 business days.
               </p>
             </div>
           )}

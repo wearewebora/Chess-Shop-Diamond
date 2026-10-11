@@ -103,7 +103,7 @@ export const OrderStatusPage: React.FC = () => {
                         ? 'bg-emerald-100 text-emerald-800'
                         : order.payment_status === 'rejected'
                         ? 'bg-rose-100 text-rose-800'
-                        : 'bg-amber-100 text-amber-800'
+                        : 'bg-amber-100 text-amber-900 border border-amber-300/80 shadow-2xs'
                     }`}>
                       {order.payment_status === 'verified' || order.payment_status === 'approved' || order.payment_status === 'activated' ? (
                         <CheckCircle2 className="w-3.5 h-3.5" />
@@ -113,6 +113,8 @@ export const OrderStatusPage: React.FC = () => {
                       <span>
                         {order.payment_status === 'verified' || order.payment_status === 'approved' || order.payment_status === 'activated'
                           ? 'Activated'
+                          : order.payment_status === 'pending'
+                          ? 'Pending'
                           : order.payment_status}
                       </span>
                     </span>
@@ -138,6 +140,27 @@ export const OrderStatusPage: React.FC = () => {
                     <span className="font-mono text-slate-700">{order.paypal_transaction_id}</span>
                   </div>
                 </div>
+
+                {/* Pending Status Activation Window */}
+                {order.payment_status === 'pending' && (
+                  <div className="bg-amber-50 border border-amber-200/90 rounded-2xl p-4 sm:p-5 text-xs text-amber-950 space-y-2">
+                    <div className="flex items-center gap-2 font-bold text-amber-800">
+                      <Clock className="w-4 h-4 text-amber-600 shrink-0" />
+                      <span>Order Status Update: Pending Verification & Activation</span>
+                    </div>
+                    <div className="bg-white/95 border border-amber-100 rounded-xl p-3.5 text-amber-900 leading-relaxed font-sans shadow-2xs">
+                      <span className="block text-[10px] uppercase font-bold text-amber-700 tracking-wider mb-1">
+                        Activation Timeframe:
+                      </span>
+                      <p className="text-xs text-slate-800 leading-relaxed">
+                        Your payment reference is under review. Your official Chess.com Diamond membership will be activated directly to your account within <strong className="text-amber-900 font-bold">1 to 15 business days</strong>.
+                      </p>
+                    </div>
+                    <p className="text-[11px] text-amber-700">
+                      Need expedited assistance? Reach support directly at <a href={`mailto:${settings.support_email}`} className="font-bold underline hover:text-amber-900">{settings.support_email}</a>.
+                    </p>
+                  </div>
+                )}
 
                 {/* Rejection Notice & Instructions */}
                 {order.payment_status === 'rejected' && (

@@ -650,12 +650,25 @@ export const AdminDashboardPage: React.FC = () => {
                                 ? 'bg-emerald-100 text-emerald-800'
                                 : order.payment_status === 'rejected'
                                 ? 'bg-rose-100 text-rose-800'
-                                : 'bg-amber-100 text-amber-800'
+                                : 'bg-amber-100 text-amber-900 border border-amber-300/80 shadow-2xs'
                             }`}>
-                              {order.payment_status === 'verified' || order.payment_status === 'approved'
-                                ? 'Activated'
-                                : order.payment_status}
+                              {order.payment_status === 'verified' || order.payment_status === 'approved' ? (
+                                'Activated'
+                              ) : order.payment_status === 'pending' ? (
+                                <>
+                                  <Clock className="w-3 h-3 text-amber-700 shrink-0" />
+                                  <span>Pending</span>
+                                </>
+                              ) : (
+                                order.payment_status
+                              )}
                             </span>
+
+                            {order.payment_status === 'pending' && (
+                              <span className="text-[10px] text-amber-700 font-medium flex items-center gap-1">
+                                <span>Activation timeframe: 1 to 15 business days</span>
+                              </span>
+                            )}
 
                             {order.payment_status === 'rejected' ? (
                               <div className="mt-1 p-2 bg-rose-50 border border-rose-200/80 rounded-xl text-[10px] text-rose-900 max-w-xs space-y-1">
