@@ -7,6 +7,7 @@ import { BackendHubModal } from './components/BackendHubModal';
 import { SmsDispatchBanner } from './components/SmsDispatchBanner';
 
 import { ChessWallpaperBackground } from './components/ChessWallpaperBackground';
+import { ErrorBoundary } from './components/ErrorBoundary';
 import { HomePage } from './pages/HomePage';
 import { AboutPage } from './pages/AboutPage';
 import { ServicesPage } from './pages/ServicesPage';
@@ -31,13 +32,15 @@ const AppContent: React.FC = () => {
       <Navbar />
 
       <main className="flex-1 relative z-10">
-        {currentView === 'home' && <HomePage />}
-        {currentView === 'about' && <AboutPage />}
-        {currentView === 'services' && <ServicesPage />}
-        {currentView === 'checkout' && <CheckoutPage />}
-        {currentView === 'order-status' && <OrderStatusPage />}
-        {currentView === 'admin' && <AdminPage />}
-        {currentView === 'contact' && <ContactPage />}
+        <ErrorBoundary>
+          {currentView === 'home' && <HomePage />}
+          {currentView === 'about' && <AboutPage />}
+          {currentView === 'services' && <ServicesPage />}
+          {currentView === 'checkout' && <CheckoutPage />}
+          {currentView === 'order-status' && <OrderStatusPage />}
+          {currentView === 'admin' && <AdminPage />}
+          {currentView === 'contact' && <ContactPage />}
+        </ErrorBoundary>
       </main>
 
       <Footer />
