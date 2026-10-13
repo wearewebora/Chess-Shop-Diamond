@@ -188,15 +188,33 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     setRejectionReasons(prev => prev.filter(r => r !== reasonToDelete));
   };
 
+  // Helper to detect and preserve Plesk Site Preview or subfolder prefix
+  const getPleskBasePrefix = (): string => {
+    if (typeof window === 'undefined') return '';
+    const pathname = window.location.pathname;
+    const match = pathname.match(/^(\/plesk-site-preview\/[^\/]+(?:\/https?\/[^\/]+)?)/i);
+    if (match) {
+      return match[1].replace(/\/+$/, '');
+    }
+    return '';
+  };
+
   // Helper functions to map URLs to views and vice-versa
   const getViewFromPath = (path: string): AppView => {
-    const clean = path.toLowerCase().replace(/\/+$/, '') || '/';
+    const pleskPrefix = getPleskBasePrefix();
+    let clean = path.toLowerCase();
+    if (pleskPrefix && clean.startsWith(pleskPrefix.toLowerCase())) {
+      clean = clean.slice(pleskPrefix.length);
+    }
+    clean = clean.replace(/\/+$/, '') || '/';
+
     // Admin login URL: /wearewebora
     if (clean === '/wearewebora' || clean.startsWith('/wearewebora/') || clean.startsWith('/wearewebora')) return 'admin';
     // Also support /admin by rewriting URL to /wearewebora
     if (clean === '/admin' || clean.startsWith('/admin/')) {
       if (typeof window !== 'undefined') {
-        window.history.replaceState({ view: 'admin' }, '', '/wearewebora');
+        const target = pleskPrefix ? `${pleskPrefix}/wearewebora` : '/wearewebora';
+        window.history.replaceState({ view: 'admin' }, '', target);
       }
       return 'admin';
     }
@@ -209,16 +227,22 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   };
 
   const getPathFromView = (view: AppView): string => {
+    const pleskPrefix = getPleskBasePrefix();
+    let subPath = '/';
     switch (view) {
-      case 'admin': return '/wearewebora';
-      case 'about': return '/about';
-      case 'services': return '/services';
-      case 'checkout': return '/checkout';
-      case 'order-status': return '/order-status';
-      case 'contact': return '/contact';
+      case 'admin': subPath = '/wearewebora'; break;
+      case 'about': subPath = '/about'; break;
+      case 'services': subPath = '/services'; break;
+      case 'checkout': subPath = '/checkout'; break;
+      case 'order-status': subPath = '/order-status'; break;
+      case 'contact': subPath = '/contact'; break;
       case 'home':
-      default: return '/';
+      default: subPath = '/'; break;
     }
+    if (pleskPrefix) {
+      return subPath === '/' ? `${pleskPrefix}/` : `${pleskPrefix}${subPath}`;
+    }
+    return subPath;
   };
 
   const [currentView, setCurrentViewState] = useState<AppView>(() => {
